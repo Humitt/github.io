@@ -1,0 +1,106 @@
+// ─── SCSS Mixins — Humitt ────────────────────────────────────────────────────
+@use 'variables' as *;
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $space-6;
+
+  @media (max-width: 768px) {
+    padding-inline: $space-4;
+  }
+}
+
+// Flex center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex between
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Section base
+@mixin section-base {
+  padding-block: $space-24;
+
+  @media (max-width: 768px) {
+    padding-block: $space-16;
+  }
+}
+
+// Heading display
+@mixin heading-display {
+  font-family: $font-display;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+// Subtle texture overlay
+@mixin texture-overlay {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// Fade in from below animation
+@mixin fade-up($delay: 0ms) {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease $delay, transform 0.7s ease $delay;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Line divider
+@mixin divider($color: rgba(0,0,0,0.12)) {
+  width: 48px;
+  height: 1px;
+  background: $color;
+  display: block;
+}
+
+// Responsive grid
+@mixin grid($cols, $gap: $space-6) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Button base
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  font-family: $font-body;
+  font-size: $text-sm;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: none;
+  text-decoration: none;
+}

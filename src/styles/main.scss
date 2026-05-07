@@ -1,0 +1,128 @@
+// ─── Global Styles — Humitt ──────────────────────────────────────────────────
+@use 'reset';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ── Base ─────────────────────────────────────────────────────────────────────
+body {
+  font-family: $font-body;
+  background-color: $color-bg-base;
+  color: $color-text;
+  font-size: $text-base;
+  font-weight: 400;
+}
+
+// ── Typography ────────────────────────────────────────────────────────────────
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  line-height: 1.15;
+}
+
+// ── Utility classes ───────────────────────────────────────────────────────────
+.container {
+  @include container;
+}
+
+.section {
+  @include section-base;
+}
+
+// ── Scroll animations ─────────────────────────────────────────────────────────
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.btn-primary {
+  @include btn-base;
+  background: $color-text;
+  color: $color-bg-base;
+  border: 1px solid $color-text;
+
+  &:hover {
+    background: transparent;
+    color: $color-text;
+  }
+}
+
+.btn-outline {
+  @include btn-base;
+  background: transparent;
+  color: $color-text;
+  border: 1px solid $color-text;
+
+  &:hover {
+    background: $color-text;
+    color: $color-bg-base;
+  }
+}
+
+.btn-ghost {
+  @include btn-base;
+  background: transparent;
+  color: $color-text-muted;
+  border: 1px solid transparent;
+
+  &:hover {
+    color: $color-text;
+    border-color: $color-text;
+  }
+}
+
+// ── Section titles ────────────────────────────────────────────────────────────
+.section-label {
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  display: block;
+  margin-bottom: $space-3;
+}
+
+.section-title {
+  @include heading-display;
+  font-size: $text-4xl;
+  margin-bottom: $space-4;
+  color: $color-text;
+
+  @media (max-width: 768px) {
+    font-size: $text-3xl;
+  }
+}
+
+.section-subtitle {
+  font-size: $text-lg;
+  color: $color-text-muted;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+// ── Decorative divider ────────────────────────────────────────────────────────
+.ruled-line {
+  width: 48px;
+  height: 1px;
+  background: $color-border;
+  margin: $space-4 0 $space-6;
+}
+
+// ── Hat SVG decorative element ────────────────────────────────────────────────
+.hat-deco {
+  display: inline-block;
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+// ── Page loading bar ──────────────────────────────────────────────────────────
+#app {
+  min-height: 100vh;
+}
